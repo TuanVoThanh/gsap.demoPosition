@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .animation {
+            width: 600px;
+            height: 400px;
+            margin-top: 20px;
+            background-color: teal;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        #man {
+            position: absolute;
+            bottom: 0;
+            right: -80px;
+        }
+
+        #lift {
+            position: absolute;
+            bottom: -200px;
+            left: 150px;
+        }
+
+        #car {
+            position: absolute;
+            bottom: 0;
+            left: -290px;
+        }
+
+        #restart {
+            background-color: teal;
+            color: white;
+            border-radius: 20px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #restart:hover {
+            background-color: rgba(0, 128, 128, 0.8);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <button class="dark-grey-button club-demo-button" id="restart">restart</button>
+        </nav>
+        <div class="animation">
+            <img id="car" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/car.png">
+            <img id="lift" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/lift.png">
+            <img id="man" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/supervisor.png">
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+    <script>
+        let tl = gsap.timeline({ defaults: { duration: 1, ease: 'slow' }, paused: false, });
+        tl.to('#car', {
+            keyframes: [
+                {
+                    duration: 2,
+                    ease: 'slow',
+                    left: '150px',
+                },
+                {
+                    duration: 1,
+                    ease: 'slow',
+                    bottom: '195px',
+                }
+            ]
+        })
+            .to('#man', {
+                right: '60px',
+            }, 1)
+            .to('#lift', {
+                bottom: 0,
+            }, 2)
+
+        document.querySelector('#restart').onclick = () => tl.restart();
+    </script>
+</body>
+
+</html>
